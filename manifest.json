@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+
+  "name": "Google Tag Manager Super-Saver",
+  "description": "Streamlines your workflow for testing pages in Google Tag Manager",
+  "version": "1.0",
+
+  "browser_action": {
+   "default_icon": "gtm-saver-icon.png",
+   "default_popup": "gtm-saver.html"
+  },
+  "background": {
+    "scripts": ["gtm-saver.js", "gtm-actions.js"],
+    "persistent": true
+  },
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "http://*/*",
+    "https://*/*"
+   ]
+}
