@@ -10,9 +10,14 @@
    "default_popup": "gtm-saver.html"
   },
   "background": {
-    "scripts": ["gtm-saver.js", "gtm-actions.js"],
+    "scripts": ["gtm-saver.js"],
     "persistent": true
   },
+  "content_scripts": [ {
+   "css": [ "gtm-client.css", "gtm-actions.js", "gtm-reload.js" ],
+   "matches": [ "https://tagmanager.google.com/*" ],
+   "run_at": "document_end"
+} ],
   "permissions": [
     "tabs",
     "activeTab",
