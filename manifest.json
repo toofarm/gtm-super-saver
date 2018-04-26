@@ -6,22 +6,24 @@
   "version": "1.0",
 
   "browser_action": {
-   "default_icon": "gtm-saver-icon.png",
+   "default_icon": "imgs/gtm-saver-icon.png",
    "default_popup": "gtm-saver.html"
   },
   "background": {
-    "scripts": ["gtm-saver.js"],
-    "persistent": true
+    "scripts": ["gtm-background-actions.js"],
+    "persistent": false
   },
   "content_scripts": [ {
-   "css": [ "gtm-client.css", "gtm-actions.js", "gtm-reload.js" ],
-   "matches": [ "https://tagmanager.google.com/*" ],
-   "run_at": "document_end"
+   "css": [ "gtm-content-styles.css"],
+   "js": ["gtm-content-actions.js"], 
+   "matches": [ "https://tagmanager.google.com/*" ]
 } ],
   "permissions": [
     "tabs",
     "activeTab",
     "http://*/*",
-    "https://*/*"
+    "https://*/*",
+    "storage",
+    "webNavigation"
    ]
 }

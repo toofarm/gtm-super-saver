@@ -1,9 +1,8 @@
-(function() {
-			var debugDiv = document.getElementsByTagName('div');
-			var gtmConfirmed = debugDiv[debugDiv.length - 1].children[0].alt;
-			console.log(gtmConfirmed);
+	(function() {
+			var images = document.getElementsByTagName('img');
+			var gtmConfirmed = images[images.length - 1].alt;
 
-			if ( gtmConfirmed === 'GTM Logo' ) {
+			if ( gtmConfirmed === 'Up Arrow' ) {
 				chrome.runtime.sendMessage({order: "refresh-me"}, function(response) {
 					console.log(response);
 				})
