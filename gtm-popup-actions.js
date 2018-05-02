@@ -11,21 +11,15 @@ function toggle(e) {
 		btn.style.backgroundColor = '#888';
 		chrome.storage.sync.set({toggleState: 'active'}, function() {
 			tgl = 'active';
-			// console.log('Toggle state is set to ' + tgl);
-		    chrome.runtime.sendMessage({order: "toggleOn"}, function(response) {
-				console.log(response);
-			})
-	    });
+			chrome.runtime.sendMessage({order: "toggleOn"})
+		});
 	} else if ( tgl === 'active' ) {
 		btn.innerHTML = 'activate';				
 		btn.style.backgroundColor = "#4285F4";
 		chrome.storage.sync.set({toggleState: 'inactive'}, function() {
 			tgl = 'inactive';
-			// console.log('Toggle state is set to ' + tgl);
-		    chrome.runtime.sendMessage({order: "toggleOff"}, function(response) {
-				console.log(response);
-			})
-	    });
+			chrome.runtime.sendMessage({order: "toggleOff"})
+		});
 	}
 
 }
@@ -33,7 +27,6 @@ function toggle(e) {
 
 document.addEventListener('DOMContentLoaded', function() {
 	var btn = document.getElementById('gtm-toggle');
-	// console.log('Popup actions firing');
 
 	chrome.storage.sync.get(['toggleState'], function (result) {
 		tgl = result.toggleState;

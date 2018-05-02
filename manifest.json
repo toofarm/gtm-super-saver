@@ -6,8 +6,12 @@
   "version": "1.0",
 
   "browser_action": {
-   "default_icon": "imgs/gtm-saver-icon.png",
-   "default_popup": "gtm-saver.html"
+   "default_icon": {
+    "38": "imgs/gtm-saver-icon38.png",
+    "38": "imgs/gtm-saver-icon-inactive38.png"
+   },
+   "default_popup": "gtm-saver.html",
+   "default_title": "GTM Super-Saver"
   },
   "background": {
     "scripts": ["gtm-background-actions.js"],
