@@ -4,9 +4,9 @@ var fireControl = '';
 // Insert dummy 'Save' button if we're making changes in edit mode
 function insertMyBtn(e) {
 
-	var editSheet = document.getElementsByClassName('gtm-veditor-section-overlay')[0];
+	if ( fireControl == 'activate' && e.target.classList.contains('gtm-veditor-section-overlay')  ) {
 
-	if ( fireControl == 'activate' && e.target == editSheet ) {
+		console.log('new click selector working');
 
 		var saveBtnAll = document.getElementsByClassName('btn-action');
 
@@ -42,7 +42,7 @@ function insertMyBtn(e) {
 						setTimeout(function() {
 							chrome.runtime.sendMessage({order: "refresh"});
 						}, 500);	
-					}, 800);
+					}, 1000);
 				}
 			})
 		}

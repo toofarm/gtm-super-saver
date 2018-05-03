@@ -60,13 +60,13 @@ chrome.tabs.onActivated.addListener(function(tab) {
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse) {
 		if (request.order == "refresh") {    	
-			chrome.tabs.query({}, function(tabs) {
-				for ( var i = 0; i < tabs.length; i++ ) {
-					if ( tabs[i].url.includes('chrome://') == false ) {
-						chrome.tabs.executeScript(tabs[i].id, {file: "gtm-reload.js"});
+				chrome.tabs.query({currentWindow: true}, function(tabs) {
+					for ( var i = 0; i < tabs.length; i++ ) {
+						if ( tabs[i].url.includes('chrome://') == false ) {
+							chrome.tabs.executeScript(tabs[i].id, {file: "gtm-reload.js"});
+						}
 					}
-				}
-			}) 		
+				}) 	
 		} else if (request.order == 'refresh-me') {
 			sendResponse({farewell:sender.url});
 			chrome.tabs.query({url: sender.url}, function(tabs) {

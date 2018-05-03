@@ -13,6 +13,4 @@ INSTALLING GTM SUPER-SAVER
 3. In the upper right-hand corner, flip the switch to toggle Developer Mode to 'on'
 4. Click 'Load unpackaged' and select the GTM Super-Saver .zip file
 
-////////////////////////////////////
-
 Feel free to fork if you have suggestions and open issues if they appear.
