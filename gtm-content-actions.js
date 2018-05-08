@@ -6,8 +6,6 @@ function insertMyBtn(e) {
 
 	if ( fireControl == 'activate' && e.target.classList.contains('gtm-veditor-section-overlay')  ) {
 
-		console.log('new click selector working');
-
 		var saveBtnAll = document.getElementsByClassName('btn-action');
 
 		for ( var i = 0; i < saveBtnAll.length; i++ ) {
@@ -18,15 +16,18 @@ function insertMyBtn(e) {
 
 		saveBtn.style.display = "none";
 
+		var saveHolders = document.getElementsByClassName('gtm-sheet-header__actions');
+		var saveHolder = saveHolders[saveHolders.length - 1];
+
+
 		var newSaveBtn = document.createElement('div');
 		var newSaveBtnInner = document.createElement('span');
-		var saveHolder = document.getElementsByClassName('gtm-sheet-header__actions')[0];
 		newSaveBtnInner.className = 'new-save-btn-txt';
 		newSaveBtn.className = 'new-save-btn';
 		newSaveBtnInner.innerText = 'Save';
 		newSaveBtn.prepend(newSaveBtnInner);
 
-		if ( document.getElementsByClassName('new-save-btn').length === 0 ) {
+		if ( document.getElementsByClassName('new-save-btn').length < 2 ) {
 			saveHolder.prepend(newSaveBtn);
 		}
 
@@ -42,7 +43,7 @@ function insertMyBtn(e) {
 						setTimeout(function() {
 							chrome.runtime.sendMessage({order: "refresh"});
 						}, 500);	
-					}, 1000);
+					}, 1500);
 				}
 			})
 		}
