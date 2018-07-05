@@ -3,7 +3,7 @@
 
   "name": "Google Tag Manager Super-Saver",
   "description": "Streamlines your workflow for testing pages in Google Tag Manager",
-  "version": "1.0",
+  "version": "1.1",
 
   "browser_action": {
    "default_icon": {

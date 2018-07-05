@@ -4,7 +4,9 @@ var fireControl = '';
 // Insert dummy 'Save' button if we're making changes in edit mode
 function insertMyBtn(e) {
 
-	if ( fireControl == 'activate' && e.target.classList.contains('gtm-veditor-section-overlay')  ) {
+	var refreshContainer = document.getElementsByClassName('notification-action')[0];
+
+	if ( fireControl == 'activate' && e.target.classList.contains('gtm-veditor-section-overlay') && refreshContainer ) {
 
 		var saveBtnAll = document.getElementsByClassName('btn-action');
 
@@ -19,7 +21,6 @@ function insertMyBtn(e) {
 		var saveHolders = document.getElementsByClassName('gtm-sheet-header__actions');
 		var saveHolder = saveHolders[saveHolders.length - 1];
 
-
 		var newSaveBtn = document.createElement('div');
 		var newSaveBtnInner = document.createElement('span');
 		newSaveBtnInner.className = 'new-save-btn-txt';
@@ -27,15 +28,29 @@ function insertMyBtn(e) {
 		newSaveBtnInner.innerText = 'Save';
 		newSaveBtn.prepend(newSaveBtnInner);
 
-		if ( document.getElementsByClassName('new-save-btn').length < 2 ) {
+		if ( saveHolders[saveHolders.length - 1].getElementsByClassName('new-save-btn').length == 0 ) {
 			saveHolder.prepend(newSaveBtn);
 		}
 
-		var refreshContainer = document.getElementsByClassName('notification-action')[0];
-
 			// On save button click, save the changes, then check if we're previewing; if so, send refresh order
 			newSaveBtn.addEventListener('click', function() {
-				saveBtn.click();
+				//Check if changes have been made, if so save them, otherwise, close the panel
+				let closeBtns = document.getElementsByClassName('gtm-sheet-header__close')
+				let closeBtn = closeBtns[closeBtns.length - 1]
+
+				var saveBtnAll = document.getElementsByClassName('btn-action');
+
+				for ( var i = 0; i < saveBtnAll.length; i++ ) {
+					if ( saveBtnAll[i].innerText == 'SAVE' || saveBtnAll[i].innerText == ' Save ' ) {
+						saveBtn = saveBtnAll[i];
+					}
+				}
+
+				if (!saveBtn.disabled) {
+					saveBtn.click();
+				} else {
+					closeBtn.click()
+				}
 				if ( refreshContainer != undefined ) {
 					var refresh = refreshContainer.children[0];
 					setTimeout(function() {
@@ -71,7 +86,6 @@ function removeDomListeners() {
 // Activate listening functions
 function addDomListeners() {
 	var bod = document.getElementsByTagName('body')[0];
-
 	bod.addEventListener("click", insertMyBtn, true);		
 }
 

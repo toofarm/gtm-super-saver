@@ -11,7 +11,7 @@ chrome.storage.sync.get(['toggleState'], function(result) {
 			})	
 		});		
 	}
-})
+}) 
 
 // Initialize content scripts if plugin is activated
 function gtmInit() {
